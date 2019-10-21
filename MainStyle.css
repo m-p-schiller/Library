@@ -1,0 +1,70 @@
+* {
+	box-sizing: border-box;
+	font-family: Arial;
+}
+
+body {
+	background-color: #f5ebe1;
+	font-family: Arial;
+}
+h1 {
+	margin-left: 1%;
+}
+
+/* Style the top Menu bar */
+.topMenu {
+	overflow: hidden;
+	background-color: #c4816c;
+	height: 8%;
+}
+
+/* Style the topMenu links */
+.topMenu a {
+	height: 100%;
+	font-size: 1.875em; 
+	color: black;
+	float: left;
+	display: block;
+	text-align: center;
+	padding: 14px 50px;
+	text-decoration: none;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #f5ebe1;
+}
+
+a { 
+	color: black;
+	text-decoration: none;	
+	font-size: 25px;
+}
+
+/* Style the footer */
+.footer {
+	background-color: #f5ebe1;
+	padding: 10px;
+    position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+div.book {
+	background-color: #D3D3D3;
+	color: black;
+	margin: 20px;
+	border: 1px solid black;
+	float: left;
+	width: 180px;
+	height: 330px
+}
+
+div.book img {
+	width: 100%;
+	height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
