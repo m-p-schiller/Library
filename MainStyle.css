@@ -6,22 +6,51 @@
 body {
 	background-color: #f5ebe1;
 	font-family: Arial;
+	color: #282c37;
+  overflow-x: hidden;
+	padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow:hidden;
 }
 h1 {
 	margin-left: 1%;
+}
+
+.intro-heading {
+    text-transform: uppercase;
+		padding: 14px 50px;
+		text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+
+.header-image img{
+	max-width: 100%;
+  max-height: 100%;
+	height: auto;
+	width: 280px;
+	top: 10px;
+
+	text-align: center;
 }
 
 /* Style the top Menu bar */
 .topMenu {
 	overflow: hidden;
 	background-color: #c4816c;
-	height: 8%;
+	height: 4%;
 }
 
 /* Style the topMenu links */
 .topMenu a {
+	font-size: 16px;
+  line-height: 0;
+  color: #282c37;
 	height: 100%;
-	font-size: 1.875em; 
+	font-size: 1.5em;
 	color: black;
 	float: left;
 	display: block;
@@ -29,13 +58,14 @@ h1 {
 	padding: 14px 50px;
 	text-decoration: none;
 	border-style: solid;
-	border-width: 2px;
+	border-width: 1px;
 	border-color: #f5ebe1;
+	font-family: serif;
 }
 
-a { 
+a {
 	color: black;
-	text-decoration: none;	
+	text-decoration: none;
 	font-size: 25px;
 }
 
@@ -43,7 +73,7 @@ a {
 .footer {
 	background-color: #f5ebe1;
 	padding: 10px;
-    position: fixed;
+  position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -56,7 +86,7 @@ div.book {
 	border: 1px solid black;
 	float: left;
 	width: 180px;
-	height: 330px
+	height: 310px;
 }
 
 div.book img {
