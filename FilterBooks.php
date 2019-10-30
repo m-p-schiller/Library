@@ -26,20 +26,35 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row	
     while($row = $result->fetch_assoc()) {
+		$getLink = preg_replace('/[^a-z]+/i', '_', $row["Title"]); 
 		echo '<div class="book">';
-		echo '<img src="bookArt.png">';
+		echo '<a href="BookPage.php?DTitle=' .$getLink. '"><img src="bookArt.png"></a>';
 		echo '<div class="desc"><i>' . $row["Title"]. '</i> </br>' . $row["Author"] .'</div>';
 		echo '</div>';
     }
 } else {
-    echo "0 results";
+  // echo "0 results";
+}
+
+$sql = 'SELECT * FROM books WHERE Genre2=\'' . $_GET["genre"] . '\';';
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row	
+    while($row = $result->fetch_assoc()) {
+		$getLink = preg_replace('/[^a-z]+/i', '_', $row["Title"]); 
+		echo '<div class="book">';
+		echo '<a href="BookPage.php?DTitle=' .$getLink. '"><img src="bookArt.png"></a>';
+		echo '<div class="desc"><i>' . $row["Title"]. '</i> </br>' . $row["Author"] .'</div>';
+		echo '</div>';
+    }
+} else {
+    //echo "0 results";
 }
 
 ?>
 
-<div class="footer">
-	
-</div>
+
 
 </body>
 </html>
