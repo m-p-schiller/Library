@@ -1,0 +1,47 @@
+$gray: lighten($black, 40%);
+
+body {
+	background-color: #f5ebe1;
+	font-family: Arial;
+	color: #282c37;
+  overflow-x: hidden;
+	padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow:hidden;
+}
+
+.card {
+  position: relative;
+  background: $gray;
+  border-radius: 5px;
+  padding: 60px 0 40px 0;
+  box-sizing: border-box;
+}
+
+.title{
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.title{
+    position: relative;
+    z-index: 1;
+    margin: 0 0 35px;
+    padding: 20px 0 10px;
+    color: pink;
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.footerL {
+    margin: 20px 0 0;
+    color: #d3d3d3;
+    font-size: 3px;
+    font-weight: 300;
+  }
