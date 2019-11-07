@@ -2,7 +2,6 @@
 <html>
 <head>
 	<link rel="stylesheet" href="MainStyle.css">
-    <link rel="stylesheet" href="LogStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -52,37 +51,20 @@ $(document).on("keypress", "input", function(e){
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
-	<a href="Register.php">My Account</a>
+	<a href="Login.php">My Account</a>
 	<a href="#">My Books</a>
 	<div class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
 	</div>	
 </div>
-<div class="card">
-  <h1 class="title">Register
-  </h1>
-  <form>
-    <div class="input-container">
-      <input type="#{type}" id="#{label}" required="required"/>
-      <label for="#{label}">Username</label>
-      <div class="bar"></div>
-    </div>
-    <div class="input-container">
-      <input type="#{type}" id="#{label}" required="required"/>
-      <label for="#{label}">Password</label>
-      <div class="bar"></div>
-    </div>
-    <div class="input-container">
-      <input type="#{type}" id="#{label}" required="required"/>
-      <label for="#{label}">Repeat Password</label>
-      <div class="bar"></div>
-    </div>
-    <div class="button-container">
-      <button><span>Next</span></button>
-    </div>
-  </form>
-</div>
+<h1 class="title">Register</h1>
+<form method="post" action="RegisterAcc.php">
+    <input type="text" name="username"> Username<br/>
+    <input type="text" name="password"> Password<br/>
+	<input type="text" name="passwordVer"> Verify Password<br/>
+    <input type="submit">
+</form>
 
 </body>
 </html>

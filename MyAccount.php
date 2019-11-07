@@ -1,6 +1,13 @@
+<?php
+session_start();
+include 'db_connection.php';
+$conn = OpenCon();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+
 	<link rel="stylesheet" href="MainStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -26,7 +33,6 @@ $(document).ready(function(){
     });
 });
 
-
 $(document).on("keypress", "input", function(e){
     if(e.which == 13){
         var inputVal = $(this).val();
@@ -39,31 +45,27 @@ $(document).on("keypress", "input", function(e){
 </script>
 </head>
 <header>
-	<div class="container">
+<div class="container">
       <div class="header-image"><img src="logo.png" alt=""></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
+
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
 	<a href="#">My Books</a>
-	<div class="search-box">
+	<div  class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
-	</div>	
-</div>
-
-<body>
-
-<h1>About</h1>
-
-<p>Unicorn Bookstore is a digital library service, that allows you to download freely download books
-for your enjoyment.</p>
-
-<div class="footer">
+	</div>
 	
 </div>
-</html>
+
+<?php
+$username =	$_SESSION['username'];
+echo "Hello " . $username;
+
+?>

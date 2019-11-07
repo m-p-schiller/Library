@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    header('location: http://24.57.198.146/library/MyAccount.php');
+	die;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +46,7 @@ $(document).on("keypress", "input", function(e){
 </script>
 </head>
 <header>
-	<div class="container">
+<div class="container">
       <div class="header-image"><img src="logo.png" alt=""></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
@@ -56,14 +63,14 @@ $(document).on("keypress", "input", function(e){
 	</div>	
 </div>
 
-<body>
+<h1 class="title">Login</h1>
+<form method="post" action="CheckLogin.php">
+    <input type="text" name="username"> Username<br/>
+    <input type="text" name="password"> Password<br/>
+    <input type="submit">
+</form>
+  <div class="footerL"><a href="#" style="font-size:16px;">Forgot your password?</a></div>
+  <div class="footerL"><a href="Register.php" style="font-size:16px;">Don't have a account yet?</a></div>
 
-<h1>About</h1>
-
-<p>Unicorn Bookstore is a digital library service, that allows you to download freely download books
-for your enjoyment.</p>
-
-<div class="footer">
-	
-</div>
+</body>
 </html>

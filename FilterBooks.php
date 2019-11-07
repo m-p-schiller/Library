@@ -42,7 +42,8 @@ $(document).on("keypress", "input", function(e){
 });
 </script>
 </head>
-<div class="container">
+<header>
+	<div class="container">
       <div class="header-image"><img src="logo.png" alt=""></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
@@ -51,7 +52,7 @@ $(document).on("keypress", "input", function(e){
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
-	<a href="Register.php">My Account</a>
+	<a href="Login.php">My Account</a>
 	<a href="#">My Books</a>
 	<div class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />

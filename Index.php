@@ -5,7 +5,6 @@ $conn = OpenCon();
 ?>
 <html>
 <head>
-
 	<link rel="stylesheet" href="MainStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -46,14 +45,13 @@ $(document).on("keypress", "input", function(e){
 <div class="container">
       <div class="header-image"><img src="logo.png" alt=""></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
-		</div>
 </header>
 
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
-	<a href="Register.php">My Account</a>
+	<a href="Login.php">My Account</a>
 	<a href="#">My Books</a>
 	<div  class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
