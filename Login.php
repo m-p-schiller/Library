@@ -8,6 +8,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Login</title>
 	<link rel="stylesheet" href="MainStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -47,7 +48,7 @@ $(document).on("keypress", "input", function(e){
 </head>
 <header>
 <div class="container">
-      <div class="header-image"><img src="logo.png" alt=""></div>
+      <div class="header-image"><a href="Index.php"><img src="logo.png" alt=""></a></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
@@ -56,21 +57,20 @@ $(document).on("keypress", "input", function(e){
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
-	<a href="#">My Books</a>
+	<a href="MyBooks.php">My Books</a>
 	<div class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
 	</div>	
 </div>
 
-<h1 class="title">Login</h1>
-<form method="post" action="CheckLogin.php">
+<h1 style= "padding-left: 50px;"  class="title">Login</h1>
+<form style= "padding-left: 50px;"  method="post" action="CheckLogin.php">
     <input type="text" name="username"> Username<br/>
-    <input type="text" name="password"> Password<br/>
+    <input type="password" name="password"> Password<br/>
     <input type="submit">
 </form>
-  <div class="footerL"><a href="#" style="font-size:16px;">Forgot your password?</a></div>
-  <div class="footerL"><a href="Register.php" style="font-size:16px;">Don't have a account yet?</a></div>
+<div style= "padding-left: 50px;"  class="footerL"><a href="Register.php" style="font-size:16px;">Don't have a account yet?</a></div>
 
 </body>
 </html>

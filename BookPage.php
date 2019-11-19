@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
+session_start();
 include 'db_connection.php';
 $conn = OpenCon();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="MainStyle.css">
@@ -40,11 +41,12 @@ $(document).on("keypress", "input", function(e){
         window.location.href = "http://24.57.198.146/library/BookPage.php?DTitle=" + inputVal;
     }
 });
+
 </script>
 </head>
 <header>
 	<div class="container">
-      <div class="header-image"><img src="logo.png" alt=""></div>
+      <div class="header-image"><a href="Index.php"><img src="logo.png" alt=""></a></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
@@ -53,7 +55,7 @@ $(document).on("keypress", "input", function(e){
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
-	<a href="#">My Books</a>
+	<a href="MyBooks.php">My Books</a>
 	<div class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
@@ -62,35 +64,72 @@ $(document).on("keypress", "input", function(e){
 
 <body>
 <?php
-//echo '<h1>' . $_GET["DTitle"] . '</h1>';
 
-$sql = 'SELECT * FROM books WHERE DownloadTitle=\'' . $_GET["DTitle"] . '\';';
-$result = $conn->query($sql);
+$searchTitle = $_GET["DTitle"];
+if(strlen($searchTitle) < 2){
+	echo "Please enter a longer search value";
+	
+} else {
+	$sql = 'SELECT * FROM books WHERE DownloadTitle=\'' . $searchTitle . '\';';
+	$result = $conn->query($sql);
 
-if ($result->num_rows == 0) {
-	echo 'Sorry, we have no books by that name.';
-}
-
-if ($result->num_rows > 0) {
-	$row = $result->fetch_assoc();
-	echo '<h1 style="margin-left: 25;">' . $row["Title"] . '</h1>';
-	echo '<h3 style="margin-left: 25;">'. $row["Author"]. '</h3>';
-	echo '<img src="/Library/BookArt/' . $row["DownloadTitle"] . '.jpg" style="width:20%; height:auto; margin-left: 25;"><br/><br/>';	
-	if ($row["Genre2"]!=NULL){
-		echo '<h3 style="margin-left: 25;">Genre: '. $row["Genre"] . ', ' .  $row["Genre2"] . '</h3>';
-	} else {
-		echo '<h3 style="margin-left: 25;">Genre: '. $row["Genre"] .'</h3>';	
+	if ($result->num_rows == 0) {
+		echo '<title>Search</title>';
+		$newSql = "SELECT * FROM books";
+		$newResult = $conn->query($newSql);
+		$count = 0;
+	
+		while($row = $newResult->fetch_assoc()) {
+			if((levenshtein(strtolower($row["Title"]), strtolower($searchTitle)) < 3) || (strpos(strtolower($row["Title"]), strtolower($searchTitle)) !== false)){
+				$getLink = preg_replace('/[^a-z]+/i', '_', $row["Title"]); 
+				echo '<div class="book">';
+				echo '<a href="BookPage.php?DTitle=' .$getLink. '"><img src="/Library/BookArt/' . $row["DownloadTitle"] . '.jpg"></a>';
+				echo '<div class="desc"><i>' . $row["Title"]. '</i> </br>' . $row["Author"] .'</div>';
+				echo '</div>';
+				$count++;
+			}
+		}
+		if($count == 0){
+			echo "Sorry, we have no book by that title";
+		}
+		
 	}
-	echo '<a href="/Library/BookFiles/' . $row["DownloadTitle"] .'.pdf" download>';
-	echo '<button type="button" style="margin-left: 50;">Download</button>';
-	echo '</a>';
+
+	if ($result->num_rows > 0) {
+		$row = $result->fetch_assoc();
+		$title = $row["Title"];
+		echo '<p>';
+		echo '<title >' . $title  . '</title>';
+		echo '<h1 style= "padding-left: 50px;" ">' . $row["Title"] . '</h1>';
+		echo '<h3 style= "padding-left: 80px;" "> By '. $row["Author"]. '</h3>';
+		if ($row["Genre2"]!=NULL){
+			echo '<h3 style= "padding-left: 80px;"  style="margin-left: 25;">Genre: '. $row["Genre"] . ', ' .  $row["Genre2"] . '</h3>';
+		} else {
+			echo '<h3 style= "padding-left: 80px;"  style="margin-left: 25;">Genre: '. $row["Genre"] .'</h3>';	
+		}
+		echo '<img style= "float: left; padding-left: 50px; width:360px; height:499px; margin-left: 25; " src="/Library/BookArt/' . $row["DownloadTitle"] . '.jpg" >';	
+		echo file_get_contents( '../Library/Text/' . $searchTitle . '.txt' ); // get the contents, and echo it out.
+		echo '</p>';
+		if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+			$username = $_SESSION['username'];
+			echo '<a href="/Library/BookFiles/' . $searchTitle .'.pdf" download>';
+			echo '<button id="Dbutton" style="margin-left: 50;">Download</button>';
+			echo '</a>';
+			
+			echo '<a style= "padding-left: 50px;" href="/Library/Download.php?title=' . $searchTitle . '&username=' . $username . '">';
+			echo '<button id="Dbutton" style="margin-left: 50;">Add to My Books</button>';
+			echo '</a>';					
+		} else {
+			echo '<a href="/Library/BookFiles/' . $searchTitle .'.pdf" download>';
+			echo '<button id="Dbutton" style="margin-left: 50;">Download</button>';
+			echo '</a>';
+		}
+
+	}
 }
 ?>	
 
-<div class="footer">
-	
-</div>
-
+<br><br><br><br>
 </body>
 </html>
 

@@ -5,6 +5,7 @@ $conn = OpenCon();
 ?>
 <html>
 <head>
+	<title>Home</title>
 	<link rel="stylesheet" href="MainStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -43,7 +44,7 @@ $(document).on("keypress", "input", function(e){
 </head>
 <header>
 <div class="container">
-      <div class="header-image"><img src="logo.png" alt=""></div>
+      <div class="header-image"><a href="Index.php"><img src="logo.png" alt=""></a></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 </header>
 
@@ -52,7 +53,7 @@ $(document).on("keypress", "input", function(e){
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
-	<a href="#">My Books</a>
+	<a href="MyBooks.php">My Books</a>
 	<div  class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
@@ -63,7 +64,7 @@ $(document).on("keypress", "input", function(e){
 
 <body>	
 
-<h1>Recently Added</h1>
+<h1 style= "padding-left: 50px;" >Recently Added</h1>
 
 
 <?php
@@ -82,6 +83,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
+
 ?>
 
 

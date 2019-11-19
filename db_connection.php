@@ -1,11 +1,11 @@
 <?php
 
 function OpenCon(){
-	$dbhost = "localhost";
+	$dbhost = 'localhost';
 	$dbuser = "team";
 	$dbpass = "agile";
-	$db = "library";
-	$conn = new mysqli($dbhost, $dbuser, $dbpass, $db, "3306") or die("Connect failed: %s\n". $conn -> error);
+	$db = "Library";
+	$conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n". $conn -> error);
  
 	return $conn;
 }

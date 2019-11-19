@@ -7,7 +7,7 @@ $conn = OpenCon();
 <!DOCTYPE html>
 <html>
 <head>
-
+	<title>My Account</title>
 	<link rel="stylesheet" href="MainStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -46,7 +46,7 @@ $(document).on("keypress", "input", function(e){
 </head>
 <header>
 <div class="container">
-      <div class="header-image"><img src="logo.png" alt=""></div>
+      <div class="header-image"><a href="Index.php"><img src="logo.png" alt=""></a></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
@@ -56,7 +56,7 @@ $(document).on("keypress", "input", function(e){
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
-	<a href="#">My Books</a>
+	<a href="MyBooks.php">My Books</a>
 	<div  class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
@@ -66,6 +66,22 @@ $(document).on("keypress", "input", function(e){
 
 <?php
 $username =	$_SESSION['username'];
-echo "Hello " . $username;
+echo "<p style= 'padding-left: 50px;' style='font-size:24px;'>Hello " . $username . "</p>";
+$sql = 'SELECT * FROM accounts WHERE Username =\'' . $username . '\';';
+$result = $conn->query($sql);
 
+if ($result!=null) {
+	$row = $result->fetch_assoc();
+	echo '<p style= "padding-left: 50px;" >Username: ' . $row["Username"] . '</p>';
+	echo '<p style= "padding-left: 50px;" >Name: ' . $row["Name"] . '</p>';
+	echo '<p style= "padding-left: 50px;" >Email: ' . $row["Email"] . '</p>';
+}
+
+CloseCon($conn);
 ?>
+<body>
+<br>
+<a style= "padding-left: 50px;" href="Logout.php" style="font-size:16px;">Logout</a>
+</body>
+
+
