@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Genre</title>
 	<link rel="stylesheet" href="MainStyle.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -39,7 +40,7 @@ $(document).on("keypress", "input", function(e){
 </script>
 </head>
 <div class="container">
-      <div class="header-image"><img src="logo.png" alt=""></div>
+      <div class="header-image"><a href="Index.php"><img src="logo.png" alt=""></a></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
@@ -48,7 +49,7 @@ $(document).on("keypress", "input", function(e){
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
-	<a href="#">My Books</a>
+	<a href="MyBooks.php">My Books</a>
 	<div class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
@@ -57,7 +58,7 @@ $(document).on("keypress", "input", function(e){
 <body>
 
 
-<h1>Genres</h1>
+<h1 style= "padding-left: 50px;" >Genres</h1>
 
 <?php
 include 'db_connection.php';
@@ -72,7 +73,10 @@ $result2 = $conn->query($sql2);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-	echo "<br><br>". '<a href="FilterBooks.php?genre='.$row["Genre"].'">' . $row["Genre"]. "</a><br>";
+		echo '<div class="book">';
+		echo '<a href="FilterBooks.php?genre='.$row["Genre"].'"><img src="/Library/GenreArt/' . $row["Genre"] . '.jpg"></a>';
+		echo '<div class="desc">' . $row["Genre"] .'</div>';
+		echo '</div>';
     }
 } else {
    // echo "0 results";
@@ -83,11 +87,19 @@ if ($result->num_rows > 0) {
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result2->fetch_assoc()) {
-	echo '<a href="FilterBooks.php?genre='.$row["Genre2"].'">' . $row["Genre2"]. "</a><br><br><br>";
+		echo '<div class="book">';
+		echo '<a href="FilterBooks.php?genre='.$row["Genre2"].'"><img src="/Library/GenreArt/' . $row["Genre2"] . '.jpg"></a>';
+		echo '<div class="desc">' . $row["Genre2"] .'</div>';
+		echo '</div>';
     }
 } else {
    // echo "0 results";
 }
+echo '<div class="book">';
+echo '<a href="FilterBooks.php?genre=All"><img src="/Library/GenreArt/All.jpg"></a>';
+echo '<div class="desc">View All Books</div>';
+echo '</div>';
+
 
 
 ?>

@@ -2,6 +2,7 @@
 <?php
 include 'db_connection.php';
 $conn = OpenCon();
+echo '<title>' . $_GET["genre"] . '</title>';
 ?>
 <html>
 <head>
@@ -44,7 +45,7 @@ $(document).on("keypress", "input", function(e){
 </head>
 <header>
 	<div class="container">
-      <div class="header-image"><img src="logo.png" alt=""></div>
+      <div class="header-image"><a href="Index.php"><img src="logo.png" alt=""></a></div>
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
@@ -53,7 +54,7 @@ $(document).on("keypress", "input", function(e){
 	<a href="Genre.php">Genre</a>
 	<a href="About.html">About</a>
 	<a href="Login.php">My Account</a>
-	<a href="#">My Books</a>
+	<a href="MyBooks.php">My Books</a>
 	<div class="search-box">
 		<input type="text" autocomplete="off" placeholder="Search title..." />
 		<div class="result"></div>
@@ -63,7 +64,7 @@ $(document).on("keypress", "input", function(e){
 <body>
 
 <?php
-echo '<h1>' . $_GET["genre"] . '</h1>';
+echo '<h1 style= "padding-left: 50px;" >' . $_GET["genre"] . '</h1>';
 
 $sql = 'SELECT * FROM books WHERE Genre=\'' . $_GET["genre"] . '\';';
 $result = $conn->query($sql);
@@ -78,7 +79,18 @@ if ($result->num_rows > 0) {
 		echo '</div>';
     }
 } else {
-  // echo "0 results";
+	if($_GET["genre"] == "All"){
+		$sql = 'SELECT * FROM books';
+		$result = $conn->query($sql);
+		
+		while($row = $result->fetch_assoc()) {
+			$getLink = preg_replace('/[^a-z]+/i', '_', $row["Title"]); 
+			echo '<div class="book">';
+			echo '<a href="BookPage.php?DTitle=' .$getLink. '"><img src="/Library/BookArt/' . $row["DownloadTitle"] . '.jpg"></a>';
+			echo '<div class="desc"><i>' . $row["Title"]. '</i> </br>' . $row["Author"] .'</div>';
+			echo '</div>';
+		}
+	}
 }
 
 $sql = 'SELECT * FROM books WHERE Genre2=\'' . $_GET["genre"] . '\';';

@@ -13,6 +13,9 @@ if($result->num_rows == 1){
 	$_SESSION['username'] = $username;
 	header('location: http://24.57.198.146/library/MyAccount.php');
 	die;
+} else {
+	header('location: http://24.57.198.146/library/Login.php');
+	die;
 }
 
 CloseCon($conn);

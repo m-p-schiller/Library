@@ -5,8 +5,10 @@ $conn = OpenCon();
 $username=$_POST["username"];
 $password=$_POST["password"];
 $password2=$_POST["passwordVer"];
+$Name=$_POST["name"];
+$Email=$_POST["email"];
 
-$sql="INSERT INTO accounts (Username, Password, TimeAdded) VALUES ('$username', '$password', current_timestamp())";
+$sql="INSERT INTO accounts (Username, Password, Name, Email, TimeAdded) VALUES ('$username', '$password', '$Name', '$Email', current_timestamp())";
 if ($conn->query($sql) === TRUE) {
 	session_start();
 	$_SESSION['loggedin'] = true;
