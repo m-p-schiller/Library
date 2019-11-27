@@ -8,6 +8,7 @@ $password2=$_POST["passwordVer"];
 $Name=$_POST["name"];
 $Email=$_POST["email"];
 
+//inserts new account into database
 $sql="INSERT INTO accounts (Username, Password, Name, Email, TimeAdded) VALUES ('$username', '$password', '$Name', '$Email', current_timestamp())";
 if ($conn->query($sql) === TRUE) {
 	session_start();

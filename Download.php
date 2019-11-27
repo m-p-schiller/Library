@@ -27,8 +27,6 @@ if ($result->num_rows > 0) {
 
 }
 
-
-echo '<a Id = "d1" href="/Library/BookFiles/' . $title .'.pdf" download></a>';
 CloseCon($conn);
 
 header('location: http://24.57.198.146/library/BookPage.php?DTitle=' . $title);

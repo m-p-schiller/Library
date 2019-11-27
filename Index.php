@@ -48,6 +48,7 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 </header>
 
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -64,11 +65,12 @@ $(document).on("keypress", "input", function(e){
 
 <body>	
 
-<h1 style= "padding-left: 50px;" >Recently Added</h1>
+<h1 style= "padding-left: 50px;" >Most Downloaded</h1>
 
 
 <?php
-$sql = "SELECT * FROM books ORDER BY TimeAdded DESC LIMIT 10";
+//display 10 most downloaded books
+$sql = "SELECT * FROM books ORDER BY DownloadNum DESC LIMIT 10";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -83,7 +85,6 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
 ?>
 
 

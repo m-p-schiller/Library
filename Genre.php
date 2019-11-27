@@ -44,6 +44,7 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -64,6 +65,7 @@ $(document).on("keypress", "input", function(e){
 include 'db_connection.php';
 $conn = OpenCon();
 
+//print all genres for which there is a book in the database
 $sql = "SELECT DISTINCT Genre FROM books";
 $result = $conn->query($sql);
 

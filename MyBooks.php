@@ -49,6 +49,7 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 </header>
 
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -67,6 +68,7 @@ $(document).on("keypress", "input", function(e){
 
 <h1 style= "padding-left: 50px;" >My Books</h1>
 <?php
+//display all books for which the logged in user has added it to my books
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
 	$username = $_SESSION['username'];
 	

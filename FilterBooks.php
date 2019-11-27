@@ -49,6 +49,7 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -66,6 +67,7 @@ $(document).on("keypress", "input", function(e){
 <?php
 echo '<h1 style= "padding-left: 50px;" >' . $_GET["genre"] . '</h1>';
 
+//print all books of that genre
 $sql = 'SELECT * FROM books WHERE Genre=\'' . $_GET["genre"] . '\';';
 $result = $conn->query($sql);
 

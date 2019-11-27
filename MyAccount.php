@@ -51,6 +51,7 @@ $(document).on("keypress", "input", function(e){
 		</div>
 </header>
 
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -63,25 +64,28 @@ $(document).on("keypress", "input", function(e){
 	</div>
 	
 </div>
-
+<h1 style= "padding-left: 50px;" >My Account</h1>
 <?php
+//displays account information
 $username =	$_SESSION['username'];
-echo "<p style= 'padding-left: 50px;' style='font-size:24px;'>Hello " . $username . "</p>";
+echo "<p style= 'padding-left: 50px;' style='font-size:24px;'>Account Details:</p>";
 $sql = 'SELECT * FROM accounts WHERE Username =\'' . $username . '\';';
 $result = $conn->query($sql);
 
 if ($result!=null) {
 	$row = $result->fetch_assoc();
-	echo '<p style= "padding-left: 50px;" >Username: ' . $row["Username"] . '</p>';
-	echo '<p style= "padding-left: 50px;" >Name: ' . $row["Name"] . '</p>';
-	echo '<p style= "padding-left: 50px;" >Email: ' . $row["Email"] . '</p>';
+	echo '<p style= "padding-left: 60px;" >Username: ' . $row["Username"] . '</p>';
+	echo '<p style= "padding-left: 60px;" >Name: ' . $row["Name"] . '</p>';
+	echo '<p style= "padding-left: 60px;" >Email: ' . $row["Email"] . '</p>';
 }
 
 CloseCon($conn);
 ?>
 <body>
 <br>
-<a style= "padding-left: 50px;" href="Logout.php" style="font-size:16px;">Logout</a>
+<a style= "padding-left: 50px;" href="Logout.php">
+	<button id="Dbutton" style="margin-left: 50;">Logout</button>
+</a>
 </body>
 
 

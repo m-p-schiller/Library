@@ -48,6 +48,7 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -60,6 +61,7 @@ $(document).on("keypress", "input", function(e){
 	</div>	
 </div>
 <h1 style= "padding-left: 50px;"  class="title">Register</h1>
+<!-- Register form -->
 <form style= "padding-left: 50px;"  method="post" action="RegisterAcc.php">
     <input type="text" name="username"> Username<br/>
     <input type="password" name="password"> Password<br/>

@@ -1,0 +1,142 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2019 at 09:13 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `library`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `Username` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `TimeAdded` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`Username`, `Password`, `Name`, `Email`, `TimeAdded`) VALUES
+('test1', 'mypassword', 'Horace Walpole', 'Horace@example.com', '2019-11-12 17:34:51'),
+('test2', 'pass2', 'Thomas Aquinas', 'Thomas@example.com', '2019-11-12 17:35:08'),
+('test3', 'pass3', 'Albertus Magnus', 'Albertus@example.com', '2019-11-12 17:35:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `Title` varchar(255) NOT NULL,
+  `Author` varchar(255) NOT NULL,
+  `Genre` varchar(255) NOT NULL,
+  `Genre2` varchar(255) DEFAULT NULL,
+  `DownloadTitle` varchar(255) NOT NULL,
+  `DownloadNum` int(11) NOT NULL,
+  `TimeAdded` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`Title`, `Author`, `Genre`, `Genre2`, `DownloadTitle`, `DownloadNum`, `TimeAdded`) VALUES
+('A Tale of Two Cities', 'Charles Dickens', 'Fiction', 'Classic', 'A_Tale_of_Two_Cities', 4, '2019-11-12 17:26:00'),
+('Beowulf', 'Anonymous', 'Classic', 'Fiction', 'Beowulf', 0, '2019-11-19 01:20:29'),
+('Candide', 'Voltaire', 'Fiction', 'Philosophy', 'Candide', 1, '2019-11-12 17:19:29'),
+('Common Sense', 'Thomas Paine', 'Philosophy', NULL, 'Common_Sense', 1, '2019-11-19 01:21:20'),
+('Dr. Faustus', 'Christopher Marlowe', 'Fiction', NULL, 'Dr_Faustus', 8, '2019-11-12 17:18:07'),
+('Early Lives of Charlemagne', 'A. J. Grant', 'History', NULL, 'Early_Lives_of_Charlemagne', 2, '2019-11-12 17:28:19'),
+('Frankenstein', 'Mary Shelley', 'Fiction', 'Horror', 'Frankenstein', 6, '2019-11-12 17:22:46'),
+('Gulliver\'s Travels', 'Jonathan Swift', 'Fiction', NULL, 'Gulliver_s_Travels', 4, '2019-11-12 17:25:16'),
+('Legenda Aurea', 'Jacobus a Voragine', 'Religion', NULL, 'Legenda_Aurea', 1, '2019-11-12 17:23:27'),
+('Leviathan', 'Thomas Hobbes', 'Philosophy', NULL, 'Leviathan', 5, '2019-11-12 17:17:14'),
+('Meditations', 'Marcus Aurelius', 'Philosophy', NULL, 'Meditations', 1, '2019-11-17 19:10:23'),
+('Paradise Lost', 'John Milton', 'Classic', NULL, 'Paradise_Lost', 3, '2019-11-12 17:24:36'),
+('The Castle of Otranto', 'Horace Walpole', 'Fiction', 'Horror', 'The_Castle_of_Otranto', 3, '2019-11-12 17:26:45'),
+('The Iliad', 'Homer', 'Classic', 'Fiction', 'The_Iliad', 7, '2019-11-12 17:20:57'),
+('The Jungle Book', 'Rudyard Kipling', 'Fiction', NULL, 'The_Jungle_Book', 0, '2019-11-15 19:01:35'),
+('The Monk', 'Matthew Gregory Lewis', 'Horror', NULL, 'The_Monk', 3, '2019-11-19 01:22:00'),
+('The Mysteries of Udolpho', 'Ann Radcliffe', 'Horror', NULL, 'The_Mysteries_of_Udolpho', 0, '2019-11-19 01:23:24'),
+('The Odyssey', 'Homer', 'Classic', 'Fiction', 'The_Odyssey', 5, '2019-11-12 17:21:28'),
+('The Pilgrim\'s Progress', 'John Bunyan', 'Fiction', 'Religion', 'The_Pilgrim_s_Progress', 4, '2019-11-12 17:19:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `downloads`
+--
+
+CREATE TABLE `downloads` (
+  `Username` varchar(255) NOT NULL,
+  `Title` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `downloads`
+--
+
+INSERT INTO `downloads` (`Username`, `Title`) VALUES
+('test1', 'Frankenstein'),
+('test1', 'Legenda_Aurea'),
+('test1', 'Paradise_Lost'),
+('test1', 'The_Iliad'),
+('test1', 'The_Odyssey'),
+('test2', 'Dr_Faustus'),
+('test2', 'The_Iliad'),
+('test2', 'The_Monk'),
+('test3', 'A_Tale_of_Two_Cities'),
+('test3', 'Candide'),
+('test3', 'Paradise_Lost');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`Username`);
+
+--
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD UNIQUE KEY `Title` (`Title`);
+
+--
+-- Indexes for table `downloads`
+--
+ALTER TABLE `downloads`
+  ADD PRIMARY KEY (`Username`,`Title`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -50,6 +50,8 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
+
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -67,19 +69,23 @@ $(document).on("keypress", "input", function(e){
 
 $searchTitle = $_GET["DTitle"];
 if(strlen($searchTitle) < 2){
+	//can't search for a single character
 	echo "Please enter a longer search value";
 	
 } else {
+	//check for books with the searched name
 	$sql = 'SELECT * FROM books WHERE DownloadTitle=\'' . $searchTitle . '\';';
 	$result = $conn->query($sql);
 
+
+	//check for books with a similar name
 	if ($result->num_rows == 0) {
 		echo '<title>Search</title>';
 		$newSql = "SELECT * FROM books";
 		$newResult = $conn->query($newSql);
 		$count = 0;
 	
-		while($row = $newResult->fetch_assoc()) {
+		while($row = $newResult->fetch_assoc()) {	
 			if((levenshtein(strtolower($row["Title"]), strtolower($searchTitle)) < 3) || (strpos(strtolower($row["Title"]), strtolower($searchTitle)) !== false)){
 				$getLink = preg_replace('/[^a-z]+/i', '_', $row["Title"]); 
 				echo '<div class="book">';
@@ -95,6 +101,7 @@ if(strlen($searchTitle) < 2){
 		
 	}
 
+	//display search results
 	if ($result->num_rows > 0) {
 		$row = $result->fetch_assoc();
 		$title = $row["Title"];
@@ -110,6 +117,7 @@ if(strlen($searchTitle) < 2){
 		echo '<img style= "float: left; padding-left: 50px; width:360px; height:499px; margin-left: 25; " src="/Library/BookArt/' . $row["DownloadTitle"] . '.jpg" >';	
 		echo file_get_contents( '../Library/Text/' . $searchTitle . '.txt' ); // get the contents, and echo it out.
 		echo '</p>';
+		//if logged in, also allow user to add book to my books
 		if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
 			$username = $_SESSION['username'];
 			echo '<a href="/Library/BookFiles/' . $searchTitle .'.pdf" download>';

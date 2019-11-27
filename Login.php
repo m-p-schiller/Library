@@ -52,6 +52,7 @@ $(document).on("keypress", "input", function(e){
 			<div class="intro-heading "><h1><span>Welcome to</span> Unicorn BookStore</h1></div>
 		</div>
 </header>
+<!-- Top Menu -->
 <div class="topMenu">
 	<a href="Index.php">Home</a>
 	<a href="Genre.php">Genre</a>
@@ -64,6 +65,7 @@ $(document).on("keypress", "input", function(e){
 	</div>	
 </div>
 
+<!-- Login form -->
 <h1 style= "padding-left: 50px;"  class="title">Login</h1>
 <form style= "padding-left: 50px;"  method="post" action="CheckLogin.php">
     <input type="text" name="username"> Username<br/>
